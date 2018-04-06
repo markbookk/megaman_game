@@ -23,6 +23,7 @@ public class InputHandler implements KeyListener{
 	private boolean sIsPressed;
 	private boolean iIsPressed;
 	private boolean nIsPressed;
+	private boolean rIsPressed;
 
 	private LevelState levelState;
 //	private LevelLogic levelLogic;
@@ -52,6 +53,7 @@ public class InputHandler implements KeyListener{
 		sIsPressed = false;
 		iIsPressed = false;
 		nIsPressed = false;
+		rIsPressed = false;
 	}
 
 	public boolean isLeftPressed() {
@@ -100,6 +102,10 @@ public class InputHandler implements KeyListener{
 	
 	public boolean isNPressed() {
 		return nIsPressed;
+	}
+	
+	public boolean isRPressed() {
+		return rIsPressed;
 	}
 
 	/**
@@ -151,12 +157,15 @@ public class InputHandler implements KeyListener{
 			break;
 		case KeyEvent.VK_I:
 			this.iIsPressed = true;
-			GameStatus status = levelState.getGameStatus();
-			status.setLivesLeft(status.getLivesLeft() + 1);
+//			GameStatus status = levelState.getGameStatus();
+//			status.setLivesLeft(status.getLivesLeft() + 1);
 			break;
 		case KeyEvent.VK_N:
 			this.nIsPressed = true;
-			levelState.passLevelCheat = true;
+			LevelState.passLevelCheat = true;
+			break;
+		case KeyEvent.VK_R:
+			this.rIsPressed = true;
 			break;
 		}
 		e.consume();
@@ -199,10 +208,17 @@ public class InputHandler implements KeyListener{
 			this.sIsPressed = false;
 			break;
 		case KeyEvent.VK_I:
+			GameStatus status = levelState.getGameStatus();
+			status.setLivesLeft(status.getLivesLeft() + 1);
 			this.iIsPressed = false;
 			break;
 		case KeyEvent.VK_N:
 			this.nIsPressed = false;
+			break;
+		case KeyEvent.VK_R:
+			Level1State.levelAsteroidsDestroyed = 0;
+			System.out.println("Asteroid count resetted to: " + Level1State.levelAsteroidsDestroyed);
+			this.rIsPressed = false;
 			break;
 		}
 		e.consume();

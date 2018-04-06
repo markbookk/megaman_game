@@ -57,7 +57,7 @@ public class Level1State extends LevelState {
 	protected Font bigFont;
 	protected Font biggestFont;
 
-	protected int levelAsteroidsDestroyed = 0;
+	static int levelAsteroidsDestroyed = 0;
 	
 
 	// Constructors
@@ -282,6 +282,7 @@ public class Level1State extends LevelState {
 				status.setAsteroidsDestroyed(status.getAsteroidsDestroyed() + 100);
 				removeAsteroid(asteroid);
 				levelAsteroidsDestroyed++;
+				System.out.println("Asteroids Destroyed: " + levelAsteroidsDestroyed);
 				damage=0;
 				// remove bullet
 				bullets.remove(i);
