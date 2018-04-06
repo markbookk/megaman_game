@@ -10,6 +10,7 @@ public class MegaMan extends GameObject {
 	public static final int DEFAULT_SPEED = 5;
 	public static final int Y_OFFSET = 5; // initial y distance of the ship from the bottom of the screen 
 	
+	//Where does MegaMan start in the screen MNR
 	public static final int WIDTH = 42;
 	public static final int HEIGHT = 41;
 	//public static final int speed = DEFAULT_SPEED;
