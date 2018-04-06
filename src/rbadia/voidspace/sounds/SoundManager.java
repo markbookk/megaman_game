@@ -9,7 +9,7 @@ import rbadia.voidspace.main.Level1State;
  * Manages and plays the game's sounds.
  */
 public class SoundManager {
-	private static final boolean SOUND_ON = true;
+	public static boolean SOUND_ON = true;
 
     private AudioClip shipExplosionSound = Applet.newAudioClip(Level1State.class.getResource(
     "/rbadia/voidspace/sounds/shipExplosion.wav"));

@@ -3,6 +3,10 @@ package rbadia.voidspace.main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.sound.sampled.Clip;
+
+import rbadia.voidspace.sounds.SoundManager;
+
 /**
  * Handles user input events.
  */
@@ -20,8 +24,9 @@ public class InputHandler implements KeyListener{
 	private boolean iIsPressed;
 
 	private LevelState levelState;
+//	private LevelLogic levelLogic;
 	//private GameScreen gScreen;
-
+	
 	public LevelState getLevelState() { return levelState; }
 	public void setLevelState(LevelState levelState) { this.levelState = levelState; }
 
@@ -126,6 +131,14 @@ public class InputHandler implements KeyListener{
 			break;
 		case KeyEvent.VK_M:
 			this.mIsPressed= true;
+			if (SoundManager.SOUND_ON) {
+				MegaManMain.audioClip.stop();
+				SoundManager.SOUND_ON = false;
+			}else {
+				MegaManMain.audioClip.start();
+				MegaManMain.audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+				SoundManager.SOUND_ON = true;
+			}
 			break;
 		case KeyEvent.VK_S:
 			this.sIsPressed = true;

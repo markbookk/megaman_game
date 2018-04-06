@@ -16,6 +16,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
+import rbadia.voidspace.sounds.SoundManager;
+
 /**
  * Handles general level logic and status.
  */
@@ -25,7 +27,7 @@ public class LevelLogic {
 	private long lastExchangeTime;
 	private long lastBigBulletTime;
 	private int stack= 0;
-	private int mute = 0;
+//	public int mute = 0;
 
 	private LevelState levelState;
 
@@ -48,9 +50,13 @@ public class LevelLogic {
 		this.levelState = levelState;
 	}
 
-	public int getMute(){
-		return mute;
-	}
+//	public int getMute(){
+//		System.out.println("test");
+//		return this.mute;
+//	}
+//	public void setMute(int mute){
+//		this.mute = mute;
+//	}
 
 
 	/**
@@ -88,8 +94,10 @@ public class LevelLogic {
 		try {
 			MegaManMain.audioStream = AudioSystem.getAudioInputStream(MegaManMain.audioFile);
 			MegaManMain.audioClip.open(MegaManMain.audioStream);
-			MegaManMain.audioClip.start();
-			MegaManMain.audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+			if (SoundManager.SOUND_ON) {
+				MegaManMain.audioClip.start();
+				MegaManMain.audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+			}
 		} catch (UnsupportedAudioFileException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -125,8 +133,10 @@ public class LevelLogic {
 		try {
 			MegaManMain.audioStream = AudioSystem.getAudioInputStream(MegaManMain.audioFile);
 			MegaManMain.audioClip.open(MegaManMain.audioStream);
-			MegaManMain.audioClip.start();
-			MegaManMain.audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+			if (SoundManager.SOUND_ON) {
+				MegaManMain.audioClip.start();
+				MegaManMain.audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+			}
 		} catch (UnsupportedAudioFileException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

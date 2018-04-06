@@ -82,10 +82,6 @@ public class MegaManMain {
 					break;
 				}
 				
-				if (inputHandler.isEPressed()) {
-					outcome = "RESTART?";
-					break;
-				}
 
 			}
 			playAgain = JOptionPane.showConfirmDialog(null, outcome + " ... Play Again?", "", JOptionPane.YES_NO_OPTION);

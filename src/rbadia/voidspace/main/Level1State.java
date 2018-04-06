@@ -145,11 +145,14 @@ public class Level1State extends LevelState {
 		//Changes music from "menu music" to "ingame music"
 		MegaManMain.audioClip.close();
 		MegaManMain.audioFile = new File("audio/mainGame.wav");
+		System.out.println(SoundManager.SOUND_ON);
 		try {
 			MegaManMain.audioStream = AudioSystem.getAudioInputStream(MegaManMain.audioFile);
 			MegaManMain.audioClip.open(MegaManMain.audioStream);
-			MegaManMain.audioClip.start();
-			MegaManMain.audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+			if (SoundManager.SOUND_ON) {
+				MegaManMain.audioClip.start();
+				MegaManMain.audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+			}
 		} catch (UnsupportedAudioFileException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {
