@@ -1,5 +1,6 @@
 package rbadia.voidspace.main;
 
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -38,6 +39,7 @@ public class MegaManMain {
 		InputHandler inputHandler = new InputHandler(); 		// Keyboard listener
 		GraphicsManager graphicsMan = new GraphicsManager(); // Draws all graphics for game objects
 		SoundManager soundMan = new SoundManager();			// Loads and plays all sounds during the game
+		
 
 		audioFile = new File("audio/menuScreen.wav");
 		try {
@@ -77,6 +79,11 @@ public class MegaManMain {
 
 				if (nextLevel.getGameStatus().isGameOver()) {
 					outcome = "SORRY YOU LOST";
+					break;
+				}
+				
+				if (inputHandler.isEPressed()) {
+					outcome = "RESTART?";
 					break;
 				}
 
