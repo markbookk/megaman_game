@@ -76,7 +76,7 @@ public class MegaManMain {
 				Thread nextLevelLoop = new Thread(new LevelLoop(nextLevel));
 				nextLevelLoop.start();
 				nextLevelLoop.join();
-
+				
 				if (nextLevel.getGameStatus().isGameOver()) {
 					outcome = "SORRY YOU LOST";
 					break;

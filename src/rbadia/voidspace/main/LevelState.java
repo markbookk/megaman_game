@@ -34,6 +34,9 @@ public abstract class LevelState extends JPanel {
 	private int level;
 	private Graphics2D g2d;
 	
+	//Custom
+	static boolean passLevelCheat = false;
+	
 	// Getters
 	public GraphicsManager getGraphicsManager() { return graphicsManager; }
 	public LevelLogic getGameLogic() { return gameLogic; }

@@ -58,6 +58,7 @@ public class Level1State extends LevelState {
 	protected Font biggestFont;
 
 	protected int levelAsteroidsDestroyed = 0;
+	
 
 	// Constructors
 	public Level1State(int level, MainFrame frame, GameStatus status, 
@@ -145,7 +146,7 @@ public class Level1State extends LevelState {
 		//Changes music from "menu music" to "ingame music"
 		MegaManMain.audioClip.close();
 		MegaManMain.audioFile = new File("audio/mainGame.wav");
-		System.out.println(SoundManager.SOUND_ON);
+//		System.out.println(SoundManager.SOUND_ON); //Debug mute on Level 1
 		try {
 			MegaManMain.audioStream = AudioSystem.getAudioInputStream(MegaManMain.audioFile);
 			MegaManMain.audioClip.open(MegaManMain.audioStream);

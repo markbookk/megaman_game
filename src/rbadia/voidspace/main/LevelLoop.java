@@ -27,7 +27,7 @@ public class LevelLoop implements Runnable{
 
 		levelState.doStart();
 
-		while(!levelState.getGameStatus().isGameOver() && !levelState.isLevelWon()) {
+		while(!levelState.getGameStatus().isGameOver() && !levelState.isLevelWon() && !LevelState.passLevelCheat) {
 			
 			// update the game graphics and repaint screen
 
@@ -45,7 +45,10 @@ public class LevelLoop implements Runnable{
 //				e.printStackTrace();
 //			}
 		}
-		if (levelState.isLevelWon()) levelState.doLevelWon();
+		if (levelState.isLevelWon() || LevelState.passLevelCheat) {
+			LevelState.passLevelCheat = false;
+			levelState.doLevelWon();
+		}
 		else levelState.doGameOverScreen();
 
 	}
