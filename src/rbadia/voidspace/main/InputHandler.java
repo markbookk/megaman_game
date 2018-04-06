@@ -151,6 +151,8 @@ public class InputHandler implements KeyListener{
 			break;
 		case KeyEvent.VK_I:
 			this.iIsPressed = true;
+			GameStatus status = levelState.getGameStatus();
+			status.setLivesLeft(status.getLivesLeft() + 1);
 			break;
 		case KeyEvent.VK_N:
 			this.nIsPressed = true;
