@@ -178,6 +178,7 @@ public class Level1State extends LevelState {
 	public void doLevelWon(){
 		MegaManMain.audioClip.stop();
 		setCurrentState(LEVEL_WON);
+		levelAsteroidsDestroyed = 0;	//Destroy asteroid count
 		getGameLogic().drawYouWin();
 		repaint();
 		LevelLogic.delay(5000);
