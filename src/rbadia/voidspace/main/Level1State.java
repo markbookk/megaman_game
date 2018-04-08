@@ -357,9 +357,12 @@ public class Level1State extends LevelState {
 		if((Fire() == true || Fire2()== true) && (Gravity()==false)){
 			getGraphicsManager().drawMegaFireR(megaMan, g2d, this);
 		}
-
+			
 		if((Gravity()==false) && (Fire()==false) && (Fire2()==false)){
-			getGraphicsManager().drawMegaMan(megaMan, g2d, this);
+			if (getInputHandler().isLeftPressed())
+				getGraphicsManager().drawMegaManLeft(megaMan, g2d, this);
+			else
+				getGraphicsManager().drawMegaMan(megaMan, g2d, this);
 		}
 	}
 
@@ -594,6 +597,8 @@ public class Level1State extends LevelState {
 	 */
 	public void moveMegaManLeft(){
 		if(megaMan.getX() - megaMan.getSpeed() >= 0){
+//			Graphics2D g2d = getGraphics2D();
+//			getGraphicsManager().drawMegaManLeft(megaMan, g2d, this);
 			megaMan.translate(-megaMan.getSpeed(), 0);
 		}
 	}
@@ -604,6 +609,8 @@ public class Level1State extends LevelState {
 	 */
 	public void moveMegaManRight(){
 		if(megaMan.getX() + megaMan.getSpeed() + megaMan.width < getWidth() - 250){
+//			Graphics2D g2d = getGraphics2D();
+//			getGraphicsManager().drawMegaMan(megaMan, g2d, this);
 			megaMan.translate(megaMan.getSpeed(), 0);
 		}
 	}
