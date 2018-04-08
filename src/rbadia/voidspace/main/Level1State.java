@@ -88,6 +88,9 @@ public class Level1State extends LevelState {
 	public Asteroid getAsteroid() 				{ return asteroid; 		}
 	public List<Bullet> getBullets() 			{ return bullets; 		}
 	public List<BigBullet> getBigBullets()		{ return bigBullets;   	}
+	
+	
+	public boolean isLookingLeft = false; //Check if the new megaman is looking right or left
 
 	// Level state methods
 	// The method associated with the current level state will be called 
@@ -359,7 +362,13 @@ public class Level1State extends LevelState {
 		}
 			
 		if((Gravity()==false) && (Fire()==false) && (Fire2()==false)){
-			if (getInputHandler().isLeftPressed())
+			if (getInputHandler().isLeftPressed()) {
+				isLookingLeft = true;
+			}
+			else if (getInputHandler().isRightPressed()) {
+				isLookingLeft = false;
+			}
+			if (isLookingLeft)
 				getGraphicsManager().drawMegaManLeft(megaMan, g2d, this);
 			else
 				getGraphicsManager().drawMegaMan(megaMan, g2d, this);
