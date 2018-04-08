@@ -17,4 +17,5 @@ public class Bullet extends GameObject {
 	public int getDefaultSpeed(){
 		return DEFAULT_SPEED;
 	}
+	
 }

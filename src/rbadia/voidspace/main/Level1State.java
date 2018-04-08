@@ -22,6 +22,7 @@ import rbadia.voidspace.model.Asteroid;
 import rbadia.voidspace.model.BigBullet;
 import rbadia.voidspace.model.Bullet;
 import rbadia.voidspace.model.Floor;
+import rbadia.voidspace.model.LeftBullet;
 import rbadia.voidspace.model.MegaMan;
 import rbadia.voidspace.model.Platform;
 import rbadia.voidspace.sounds.SoundManager;
@@ -37,6 +38,10 @@ public class Level1State extends LevelState {
 	protected MegaMan megaMan;
 	protected Asteroid asteroid;
 	protected List<Bullet> bullets;
+	//MNR
+	public List<Bullet> leftBullets;
+	public List<Bullet> rightBullets;
+	//
 	protected List<BigBullet> bigBullets;
 	protected Floor[] floor;	
 	protected int numPlatforms=8;
@@ -315,7 +320,7 @@ public class Level1State extends LevelState {
 			Bullet bullet = bullets.get(i);
 			getGraphicsManager().drawBullet(bullet, g2d, this);
 
-			boolean remove =   this.moveBullet(bullet);
+			boolean remove = this.moveBullet(bullet);
 			if(remove){
 				bullets.remove(i);
 				i--;
@@ -495,9 +500,18 @@ public class Level1State extends LevelState {
 	 * Fire a bullet from life.
 	 */
 	public void fireBullet(){
-		Bullet bullet = new Bullet(megaMan.x + megaMan.width - Bullet.WIDTH/2,
-				megaMan.y + megaMan.width/2 - Bullet.HEIGHT +2);
-		bullets.add(bullet);
+//		Bullet bullet = new Bullet(megaMan.x + megaMan.width - Bullet.WIDTH/2,
+//				megaMan.y + megaMan.width/2 - Bullet.HEIGHT +2);
+		if (isLookingLeft) {
+			Bullet bullet = new LeftBullet(megaMan.x + megaMan.width - Bullet.WIDTH/2,
+					megaMan.y + megaMan.width/2 - Bullet.HEIGHT +2);
+			bullets.add(bullet);
+		}
+		else {
+			Bullet bullet = new Bullet(megaMan.x + megaMan.width - Bullet.WIDTH/2,
+					megaMan.y + megaMan.width/2 - Bullet.HEIGHT +2);
+			bullets.add(bullet);
+		}
 		this.getSoundManager().playBulletSound();
 	}
 
@@ -519,7 +533,7 @@ public class Level1State extends LevelState {
 	 * @return if the bullet should be removed from screen
 	 */
 	public boolean moveBullet(Bullet bullet){
-		if(bullet.getY() - bullet.getSpeed() >= 0){
+		if((bullet.getX() - bullet.getSpeed() >= 0) && (bullet.getX() + bullet.getSpeed() <= SCREEN_WIDTH)){
 			bullet.translate(bullet.getSpeed(), 0);
 			return false;
 		}
@@ -533,8 +547,11 @@ public class Level1State extends LevelState {
 	 * @return if the bullet should be removed from screen
 	 */
 	public boolean moveBigBullet(BigBullet bigBullet){
-		if(bigBullet.getY() - bigBullet.getSpeed() >= 0){
-			bigBullet.translate(bigBullet.getSpeed(), 0);
+		if((bigBullet.getX() - bigBullet.getSpeed() >= 0) && (bigBullet.getX() + bigBullet.getSpeed() <= SCREEN_WIDTH)){
+			if (isLookingLeft)
+				bigBullet.translate(-bigBullet.getSpeed(), 0);
+			else
+				bigBullet.translate(bigBullet.getSpeed(), 0);
 			return false;
 		}
 		else{
@@ -617,7 +634,7 @@ public class Level1State extends LevelState {
 	 * @param megaMan the megaMan
 	 */
 	public void moveMegaManRight(){
-		if(megaMan.getX() + megaMan.getSpeed() + megaMan.width < getWidth() - 250){
+		if(megaMan.getX() + megaMan.getSpeed() + megaMan.width < SCREEN_WIDTH){
 //			Graphics2D g2d = getGraphics2D();
 //			getGraphicsManager().drawMegaMan(megaMan, g2d, this);
 			megaMan.translate(megaMan.getSpeed(), 0);
