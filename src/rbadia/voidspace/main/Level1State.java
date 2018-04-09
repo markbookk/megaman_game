@@ -22,6 +22,7 @@ import rbadia.voidspace.model.Asteroid;
 import rbadia.voidspace.model.BigBullet;
 import rbadia.voidspace.model.Bullet;
 import rbadia.voidspace.model.Floor;
+import rbadia.voidspace.model.LeftBigBullet;
 import rbadia.voidspace.model.LeftBullet;
 import rbadia.voidspace.model.MegaMan;
 import rbadia.voidspace.model.Platform;
@@ -522,8 +523,15 @@ public class Level1State extends LevelState {
 		//BigBullet bigBullet = new BigBullet(megaMan);
 		int xPos = megaMan.x + megaMan.width - BigBullet.WIDTH / 2;
 		int yPos = megaMan.y + megaMan.width/2 - BigBullet.HEIGHT + 4;
-		BigBullet  bigBullet = new BigBullet(xPos, yPos);
-		bigBullets.add(bigBullet);
+		if (isLookingLeft) {
+			BigBullet bigBullet = new LeftBigBullet(xPos, yPos);
+			bigBullets.add(bigBullet);
+		}
+		else {
+			BigBullet bigBullet = new BigBullet(xPos, yPos);
+			bigBullets.add(bigBullet);
+		}
+		
 		this.getSoundManager().playBulletSound();
 	}
 
@@ -548,10 +556,7 @@ public class Level1State extends LevelState {
 	 */
 	public boolean moveBigBullet(BigBullet bigBullet){
 		if((bigBullet.getX() - bigBullet.getSpeed() >= 0) && (bigBullet.getX() + bigBullet.getSpeed() <= SCREEN_WIDTH)){
-			if (isLookingLeft)
-				bigBullet.translate(-bigBullet.getSpeed(), 0);
-			else
-				bigBullet.translate(bigBullet.getSpeed(), 0);
+			bigBullet.translate(bigBullet.getSpeed(), 0);
 			return false;
 		}
 		else{
