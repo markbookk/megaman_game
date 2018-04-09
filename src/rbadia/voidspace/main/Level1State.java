@@ -96,7 +96,7 @@ public class Level1State extends LevelState {
 	public List<BigBullet> getBigBullets()		{ return bigBullets;   	}
 	
 	
-	public boolean isLookingLeft = false; //Check if the new megaman is looking right or left
+	public boolean isLookingLeft; //Check if the new megaman is looking right or left
 
 	// Level state methods
 	// The method associated with the current level state will be called 
@@ -359,12 +359,25 @@ public class Level1State extends LevelState {
 		GameStatus status = getGameStatus();
 		if(!status.isNewMegaMan()){
 			if((Gravity() == true) || ((Gravity() == true) && (Fire() == true || Fire2() == true))){
-				getGraphicsManager().drawMegaFallR(megaMan, g2d, this);
+				if (getInputHandler().isLeftPressed()) {
+					isLookingLeft = true;
+				}
+				else if (getInputHandler().isRightPressed()) {
+					isLookingLeft = false;
+				}
+				if (isLookingLeft)
+					getGraphicsManager().drawMegaFallL(megaMan, g2d, this);
+				else
+					getGraphicsManager().drawMegaFallR(megaMan, g2d, this);
 			}
 		}
-
+		
 		if((Fire() == true || Fire2()== true) && (Gravity()==false)){
 			getGraphicsManager().drawMegaFireR(megaMan, g2d, this);
+		}
+//		System.out.println(Fire2Left());
+		if((FireLeft() == true || Fire2Left()== true) && (Gravity()==false)){
+			getGraphicsManager().drawMegaFireL(megaMan, g2d, this);
 		}
 			
 		if((Gravity()==false) && (Fire()==false) && (Fire2()==false)){
@@ -374,9 +387,9 @@ public class Level1State extends LevelState {
 			else if (getInputHandler().isRightPressed()) {
 				isLookingLeft = false;
 			}
-			if (isLookingLeft)
+			if ((isLookingLeft) && (!FireLeft()) && (!Fire2Left()))
 				getGraphicsManager().drawMegaManLeft(megaMan, g2d, this);
-			else
+			else if (!isLookingLeft)
 				getGraphicsManager().drawMegaMan(megaMan, g2d, this);
 		}
 	}
@@ -452,6 +465,20 @@ public class Level1State extends LevelState {
 		}
 		return false;
 	}
+	
+	//Bullet fire pose left
+	protected boolean FireLeft(){
+		MegaMan megaMan = this.getMegaMan();
+		List<Bullet> bullets = this.getBullets();
+		for(int i=0; i<bullets.size(); i++){
+			Bullet bullet = bullets.get(i);
+			if((bullet.getX() < megaMan.getX() - megaMan.getWidth()) && 
+					(bullet.getX() >= megaMan.getX() - megaMan.getWidth() - 60)){
+				return true;
+			}
+		}
+		return false;
+	}
 
 	//BigBullet fire pose
 	protected boolean Fire2(){
@@ -466,6 +493,20 @@ public class Level1State extends LevelState {
 		}
 		return false;
 	}
+	
+	//BigBullet fire pose
+		protected boolean Fire2Left(){
+			MegaMan megaMan = this.getMegaMan();
+			List<BigBullet> bigBullets = this.getBigBullets();
+			for(int i=0; i<bigBullets.size(); i++){
+				BigBullet bigBullet = bigBullets.get(i);
+				if((bigBullet.getX() < megaMan.getX() - megaMan.getWidth()) && 
+						(bigBullet.getX() >= megaMan.getX() - megaMan.getWidth() - 60)){
+					return true;
+				}
+			}
+			return false;
+		}
 
 	//Platform Gravity
 	public boolean Fall(){

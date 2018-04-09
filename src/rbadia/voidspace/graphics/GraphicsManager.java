@@ -26,6 +26,8 @@ public class GraphicsManager {
 	private BufferedImage megaManImg;
 	private BufferedImage megaManImg2;
 	private BufferedImage megaFallRImg;
+	private BufferedImage megaFallLImg;
+	private BufferedImage megaFireLImg;
 	private BufferedImage megaFireRImg;
 	private BufferedImage floorImg;
 	private BufferedImage platformImg;
@@ -44,7 +46,9 @@ public class GraphicsManager {
 		try {
 			this.megaManImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaMan3.png"));
 			this.megaManImg2 = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaMan4.png"));
+			this.megaFallLImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaFallLeft.png"));
 			this.megaFallRImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaFallRight.png"));
+			this.megaFireLImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaFireLeft.png"));
 			this.megaFireRImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaFireRight.png"));
 			this.floorImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaFloor.png"));
 			this.platformImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/platform3.png"));
@@ -76,8 +80,16 @@ public class GraphicsManager {
 		g2d.drawImage(megaManImg2, megaMan.x, megaMan.y, observer);	
 	}
 
+	public void drawMegaFallL (MegaMan megaMan, Graphics2D g2d, ImageObserver observer){
+		g2d.drawImage(megaFallLImg, megaMan.x, megaMan.y, observer);	
+	}
+	
 	public void drawMegaFallR (MegaMan megaMan, Graphics2D g2d, ImageObserver observer){
 		g2d.drawImage(megaFallRImg, megaMan.x, megaMan.y, observer);	
+	}
+	
+	public void drawMegaFireL (MegaMan megaMan, Graphics2D g2d, ImageObserver observer){
+		g2d.drawImage(megaFireLImg, megaMan.x, megaMan.y, observer);	
 	}
 
 	public void drawMegaFireR (MegaMan megaMan, Graphics2D g2d, ImageObserver observer){

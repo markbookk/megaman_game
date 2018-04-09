@@ -55,7 +55,7 @@ public class MegaManMain {
 		while(playAgain != 1) {
 
 			GameStatus gameStatus = new GameStatus();
-			gameStatus.setLivesLeft(3);
+			gameStatus.setLivesLeft(99999);
 			LevelState level1State = new Level1State(1, frame, gameStatus, gameLogic, inputHandler, graphicsMan, soundMan);
 			LevelState level2State = new Level2State(2, frame, gameStatus, gameLogic, inputHandler, graphicsMan, soundMan);
 			LevelState levels[] = { level1State, level2State };
