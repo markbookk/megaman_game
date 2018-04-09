@@ -426,7 +426,7 @@ public class LevelLogic {
 
 		if(ih.isUpPressed()){
 			long currentTime = System.currentTimeMillis();
-			if((currentTime - lastBigBulletTime) > 570){
+			if((currentTime - lastBigBulletTime) > 200){
 				lastBigBulletTime = currentTime;
 				for(int i=0; i<6; i++){
 					getLevelState().moveMegaManUp();
