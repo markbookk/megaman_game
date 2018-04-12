@@ -8,6 +8,7 @@ import java.awt.image.ImageObserver;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
+import rbadia.voidspace.main.Level3State;
 import rbadia.voidspace.model.Asteroid;
 //import rbadia.voidspace.model.BigAsteroid;
 import rbadia.voidspace.model.BigBullet;
@@ -37,6 +38,8 @@ public class GraphicsManager {
 	private BufferedImage asteroidExplosionImg;
 	private BufferedImage megaManExplosionImg;
 	private BufferedImage bigAsteroidExplosionImg;
+	private BufferedImage powerUpLivesImg;
+	private BufferedImage powerUpLivesExplosionImg;
 
 	/**
 	 * Creates a new graphics manager and loads the game images.
@@ -56,6 +59,9 @@ public class GraphicsManager {
 			this.asteroidExplosionImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/asteroidExplosion.png"));
 			this.bulletImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/bullet.png"));
 			this.bigBulletImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/bigBullet.png"));
+			this.powerUpLivesImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/powerup.png"));
+			this.powerUpLivesExplosionImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/powerupExplosion.png"));
+			
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "The graphic files are either corrupt or missing.",
@@ -159,6 +165,15 @@ public class GraphicsManager {
 
 	public void drawBigAsteroidExplosion(Rectangle bigAsteroidExplosion, Graphics2D g2d, ImageObserver observer) {
 		g2d.drawImage(bigAsteroidExplosionImg, bigAsteroidExplosion.x, bigAsteroidExplosion.y, observer);
+	}
+
+	public void drawPowerUpLives(Asteroid powerUp, Graphics2D g2d, ImageObserver observer) {
+		g2d.drawImage(powerUpLivesImg, powerUp.x, powerUp.y, observer);
+		
+	}
+	public void drawPowerUpLivesExplosion(Rectangle powerUpExplosion, Graphics2D g2d, ImageObserver observer) {
+		g2d.drawImage(powerUpLivesExplosionImg, powerUpExplosion.x, powerUpExplosion.y, observer);
+		
 	}
 
 
