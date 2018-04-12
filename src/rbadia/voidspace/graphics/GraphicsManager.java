@@ -40,6 +40,7 @@ public class GraphicsManager {
 	private BufferedImage bigAsteroidExplosionImg;
 	private BufferedImage powerUpLivesImg;
 	private BufferedImage powerUpLivesExplosionImg;
+	private BufferedImage asteroidBigImg;
 
 	/**
 	 * Creates a new graphics manager and loads the game images.
@@ -56,6 +57,7 @@ public class GraphicsManager {
 			this.floorImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaFloor.png"));
 			this.platformImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/platform3.png"));
 			this.asteroidImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/asteroid.png"));
+			this.asteroidBigImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/bigAsteroid.png"));
 			this.asteroidExplosionImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/asteroidExplosion.png"));
 			this.bulletImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/bullet.png"));
 			this.bigBulletImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/bigBullet.png"));
@@ -142,6 +144,9 @@ public class GraphicsManager {
 	public void drawAsteroid(Asteroid asteroid, Graphics2D g2d, ImageObserver observer) {
 		g2d.drawImage(asteroidImg, asteroid.x, asteroid.y, observer);
 	}
+	public void drawBigAsteroid(Asteroid asteroid, Graphics2D g2d, ImageObserver observer) {
+		g2d.drawImage(asteroidBigImg, asteroid.x, asteroid.y, observer);
+	}
 
 	/**
 	 * Draws a MegaMan explosion image to the specified graphics canvas.
@@ -169,11 +174,9 @@ public class GraphicsManager {
 
 	public void drawPowerUpLives(Asteroid powerUp, Graphics2D g2d, ImageObserver observer) {
 		g2d.drawImage(powerUpLivesImg, powerUp.x, powerUp.y, observer);
-		
 	}
 	public void drawPowerUpLivesExplosion(Rectangle powerUpExplosion, Graphics2D g2d, ImageObserver observer) {
 		g2d.drawImage(powerUpLivesExplosionImg, powerUpExplosion.x, powerUpExplosion.y, observer);
-		
 	}
 
 

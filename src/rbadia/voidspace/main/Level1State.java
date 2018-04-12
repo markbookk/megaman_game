@@ -635,7 +635,10 @@ public class Level1State extends LevelState {
 	 * Create a new asteroid.
 	 */
 	public Asteroid newAsteroid(Level1State screen){
-		int xPos = (int) (SCREEN_WIDTH - Asteroid.WIDTH);
+//		int xPos = (int) (SCREEN_WIDTH - Asteroid.WIDTH);
+//		int xPos = rand.nextInt((int)(SCREEN_WIDTH - Asteroid.WIDTH- 32));
+//		int yPos = rand.nextInt((int)(SCREEN_HEIGHT - Asteroid.HEIGHT- 32));
+		int xPos = rand.nextInt((int)(SCREEN_WIDTH - Asteroid.WIDTH));
 		int yPos = rand.nextInt((int)(SCREEN_HEIGHT - Asteroid.HEIGHT- 32));
 		asteroid = new Asteroid(xPos, yPos);
 		return asteroid;
