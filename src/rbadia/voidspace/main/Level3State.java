@@ -20,12 +20,17 @@ public class Level3State extends Level1State {
 //	int adjustedY = rand.nextInt(this.getHeight());
 	protected Asteroid mooshroom;
 	protected Rectangle mooshroomExplosion;
-	protected boolean mooshroomDestroyed = false;
+//	protected boolean mooshroomDestroyed = false;
 	protected double lastmooshroomTime;
 	protected boolean canDraw = false;
 	protected int mooshroomDelay = 10000;
-//	protected boolean mooshroomDestroyed
+	protected int side = 1;
+	protected int randomSpeedx1 = rand.nextInt(3) + 1;
+	protected int randomSpeedy1 = rand.nextInt(3) + 1;
+	protected int randomSpeedx2 = rand.nextInt(3) + 1;
+	protected int randomSpeedy2 = rand.nextInt(3) + 1;
 	
+
 	// Constructors
 	public Level3State(int level, MainFrame frame, GameStatus status, 
 			LevelLogic gameLogic, InputHandler inputHandler,
@@ -52,16 +57,27 @@ public class Level3State extends Level1State {
 	protected void drawAsteroid() {
 		Graphics2D g2d = getGraphics2D();
 		if((asteroid.getX() + asteroid.getPixelsWide() >  0)) {
-			asteroid.translate(-asteroid.getSpeed(), asteroid.getSpeed()/2);
+			if (side == 1) { //move left
+				asteroid.translate(-asteroid.getSpeed()*randomSpeedx1, asteroid.getSpeed()/randomSpeedy1);
+			} else { //move right
+				asteroid.translate(asteroid.getSpeed()*randomSpeedx2, asteroid.getSpeed()/randomSpeedy2);
+			}
+//			asteroid.translate(-asteroid.getSpeed(), asteroid.getSpeed()/2);
 			getGraphicsManager().drawAsteroid(asteroid, g2d, this);	
 		}
 		else {
+			side = rand.nextInt(2); //Generate new side for the asteroid
 			long currentTime = System.currentTimeMillis();
 			if((currentTime - lastAsteroidTime) > NEW_ASTEROID_DELAY){
-
+			if (side == 1) { //move left
 				asteroid.setLocation(SCREEN_WIDTH - asteroid.getPixelsWide(),
 						rand.nextInt(SCREEN_HEIGHT - asteroid.getPixelsTall() - 32));
+				}else { //move right
+					asteroid.setLocation(0,
+							rand.nextInt(SCREEN_HEIGHT - asteroid.getPixelsTall() - 32));
+				}
 			}
+				
 			else {
 				// draw explosion
 				getGraphicsManager().drawAsteroidExplosion(asteroidExplosion, g2d, this);
@@ -135,7 +151,7 @@ public class Level3State extends Level1State {
 	protected void checkPowerUpLivesCollisions() { 
 		Graphics2D g2d = getGraphics2D();
 		if (mooshroom.intersects(megaMan)) {
-			mooshroomDestroyed = true;
+//			mooshroomDestroyed = true;
 			removePowerUpLives(mooshroom);
 			GameStatus status = getGameStatus();
 			getGraphicsManager().drawPowerUpLivesExplosion(mooshroomExplosion, g2d, this);
@@ -146,7 +162,7 @@ public class Level3State extends Level1State {
 		for(int i=0; i<bullets.size(); i++){
 			Bullet bullet = bullets.get(i);
 			if(mooshroom.intersects(bullet)){
-				mooshroomDestroyed = true;
+//				mooshroomDestroyed = true;
 				removePowerUpLives(mooshroom);
 				getGraphicsManager().drawPowerUpLivesExplosion(mooshroomExplosion, g2d, this);
 				bullets.remove(i);
