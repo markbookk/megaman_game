@@ -17,7 +17,7 @@ import rbadia.voidspace.sounds.SoundManager;
 public class Level3State extends Level1State {
 
 	private static final long serialVersionUID = -2094575762243216079L;
-	int adjustedY = rand.nextInt((this.getHeight() - 64) - ((this.getHeight() - 64)/3)*2) + ((this.getHeight() - 64)/3)*2;
+//	int adjustedY = rand.nextInt((this.getHeight() - 64) - ((this.getHeight() - 64)/3)*2) + ((this.getHeight() - 64)/3)*2;
 //	int adjustedY = rand.nextInt(this.getHeight());
 	protected Asteroid mooshroom;
 	protected Rectangle mooshroomExplosion;
@@ -158,9 +158,12 @@ public class Level3State extends Level1State {
 	
 	//New Power Up
 	public Asteroid NewPowerUpLives(Level1State screen){
-		int xPos = (int) (screen.getWidth() - Asteroid.WIDTH);
-		adjustedY = rand.nextInt((this.getHeight() - 64) - ((this.getHeight() - 64)/3)*2) + ((this.getHeight() - 64)/3)*2;
-		mooshroom = new Asteroid(xPos, adjustedY);
+//		int xPos = (int) (screen.getWidth() - Asteroid.WIDTH);
+//		int xPos = (int) (screen.getWidth() - Asteroid.WIDTH);
+//		adjustedY = rand.nextInt((this.getHeight() - 64) - ((this.getHeight() - 64)/3)*2) + ((this.getHeight() - 64)/3)*2;
+		int xPos = rand.nextInt((this.getHeight() - 64) - ((this.getHeight() - 64)/3)*2) + ((this.getHeight() - 64)/3)*2;
+		int yPos= rand.nextInt((this.getHeight() - 64) - ((this.getHeight() - 64)/3)*2) + ((this.getHeight() - 64)/3)*2;
+		mooshroom = new Asteroid(xPos, yPos);
 		return mooshroom;
 	}
 	
