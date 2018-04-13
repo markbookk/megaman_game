@@ -291,11 +291,13 @@ public class Level5State extends Level3State{
 		
 		g.setColor(Color.RED);
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 11));
-		try {
-			g.drawString("Lives Left: " + (10-levelAsteroidsDestroyed) + "/10", (int)megaBoss.getCenterX() - 40, (int)megaBoss.getCenterY() - 25);
-		}
-		catch (Exception e) {
-			
+		GameStatus status = getGameStatus();
+		if ((!status.isGameWon()) && (!status.isGameOver())) {
+			try {
+				g.drawString("Lives Left: " + (10-levelAsteroidsDestroyed) + "/10", (int)megaBoss.getCenterX() - 40, (int)megaBoss.getCenterY() - 25);
+			}
+			catch (Exception e) {
+			}
 		}
 	}
 	

@@ -136,7 +136,7 @@ public class InputHandler implements KeyListener{
 			break;
 		case KeyEvent.VK_E:
 			this.eIsPressed = true;
-			levelState.doGameOver();
+//			levelState.doGameOver();
 			break;
 		case KeyEvent.VK_Q:
 			this.qIsPressed= true;
