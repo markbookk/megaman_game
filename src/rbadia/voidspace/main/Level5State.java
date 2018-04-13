@@ -1,5 +1,8 @@
 package rbadia.voidspace.main;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -280,6 +283,20 @@ public class Level5State extends Level3State{
 	@Override
 	public boolean isLevelWon() {
 		return levelAsteroidsDestroyed >= 10;
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		
+		g.setColor(Color.RED);
+		g.setFont(new Font("TimesRoman", Font.PLAIN, 11));
+		try {
+			g.drawString("Lives Left: " + (10-levelAsteroidsDestroyed) + "/10", (int)megaBoss.getCenterX() - 40, (int)megaBoss.getCenterY() - 25);
+		}
+		catch (Exception e) {
+			
+		}
 	}
 	
 }
