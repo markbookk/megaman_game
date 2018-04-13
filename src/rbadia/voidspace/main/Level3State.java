@@ -28,10 +28,10 @@ public class Level3State extends Level1State {
 	protected int mooshroomDelay = 10000;
 	protected int side = 1;
 	protected int side2 = 1;
-	protected int randomSpeedx1 = rand.nextInt(2) + 1;
-	protected int randomSpeedy1 = rand.nextInt(2) + 1;
-	protected int randomSpeedx2 = rand.nextInt(2) + 1;
-	protected int randomSpeedy2 = rand.nextInt(2) + 1;
+	protected int randomSpeedx1 = rand.nextInt(3) + 1;
+	protected int randomSpeedy1 = rand.nextInt(3) + 1;
+	protected int randomSpeedx2 = rand.nextInt(3) + 1;
+	protected int randomSpeedy2 = rand.nextInt(3) + 1;
 	protected Asteroid asteroid2;
 	
 
@@ -109,6 +109,10 @@ public class Level3State extends Level1State {
 	
 	public Asteroid newAsteroid2(Level1State screen){
 //		int xPos = (int)(screen.getWidth() - Asteroid.WIDTH);
+		randomSpeedx1 = rand.nextInt(3) + 1;
+		randomSpeedx2 = rand.nextInt(3) + 1;
+		randomSpeedy1 = rand.nextInt(3) + 1;
+		randomSpeedy2 = rand.nextInt(3) + 1;
 		int xPos = rand.nextInt((int)(SCREEN_WIDTH - Asteroid.WIDTH));
 		int yPos= rand.nextInt((int)(SCREEN_HEIGHT - Asteroid.HEIGHT- 32));
 		
