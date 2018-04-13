@@ -143,10 +143,10 @@ public class Level3State extends Level1State {
 	
 	public Asteroid newAsteroid2(Level1State screen){
 //		int xPos = (int)(screen.getWidth() - Asteroid.WIDTH);
-		randomSpeedx1 = rand.nextInt(3) + 1;
-		randomSpeedx2 = rand.nextInt(3) + 1;
-		randomSpeedy1 = rand.nextInt(3) + 1;
-		randomSpeedy2 = rand.nextInt(3) + 1;
+		randomSpeedx1 = rand.nextInt(2) + 1;
+		randomSpeedx2 = rand.nextInt(2) + 1;
+		randomSpeedy1 = rand.nextInt(2) + 1;
+		randomSpeedy2 = rand.nextInt(2) + 1;
 		int xPos = rand.nextInt((int)(SCREEN_WIDTH - Asteroid.WIDTH));
 		int yPos= rand.nextInt((int)(SCREEN_HEIGHT - Asteroid.HEIGHT- 32));
 		
