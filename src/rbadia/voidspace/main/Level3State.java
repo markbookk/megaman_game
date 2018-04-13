@@ -1,6 +1,13 @@
 package rbadia.voidspace.main;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import javafx.scene.layout.Background;
 import rbadia.voidspace.graphics.GraphicsManager;
@@ -43,7 +50,34 @@ public class Level3State extends Level1State {
 	}
 
 	@Override
-	public void doStart() {	
+	public void doGettingReady() {
+		setCurrentState(GETTING_READY);
+		getGameLogic().drawGetReady();
+		repaint();
+		LevelLogic.delay(2000);
+		//Changes music from "menu music" to "ingame music"
+		MegaManMain.audioClip.close();
+//		MegaManMain.audioFile = new File("audio/mainGame.wav");
+		MegaManMain.audioFile = new File("audio/song3.wav");
+//		System.out.println(SoundManager.SOUND_ON); //Debug mute on Level 1
+		try {
+			MegaManMain.audioStream = AudioSystem.getAudioInputStream(MegaManMain.audioFile);
+			MegaManMain.audioClip.open(MegaManMain.audioStream);
+			if (SoundManager.SOUND_ON) {
+				MegaManMain.audioClip.start();
+				MegaManMain.audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+			}
+		} catch (UnsupportedAudioFileException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} catch (LineUnavailableException e1) {
+			e1.printStackTrace();
+		}
+	};
+	
+	@Override
+	public void doStart() {
 		super.doStart();
 		setStartState(GETTING_READY);
 		setCurrentState(getStartState());
@@ -198,7 +232,7 @@ public class Level3State extends Level1State {
 		lastmooshroomTime = System.currentTimeMillis();
 		canDraw = false;
 		// play asteroid explosion sound
-//		this.getSoundManager().playAsteroidExplosionSound();
+		this.getSoundManager().playAsteroidExplosionSound();
 	}
 	
 	protected void checkPowerUpLivesCollisions() { 
@@ -231,8 +265,10 @@ public class Level3State extends Level1State {
 		for(int i=0; i<9; i++){
 			if(asteroid.intersects(floor[i])){
 				removeAsteroid(asteroid);
+				this.getSoundManager().playAsteroidExplosionSound();
 			}else if(asteroid2.intersects(floor[i])){
 				removeAsteroid(asteroid2);
+				this.getSoundManager().playAsteroidExplosionSound();
 			}
 		}
 	}
@@ -243,10 +279,12 @@ public class Level3State extends Level1State {
 		if(asteroid.intersects(megaMan)){
 			status.setLivesLeft(status.getLivesLeft() - 1);
 			removeAsteroid(asteroid);
+			this.getSoundManager().playAsteroidExplosionSound();
 		}
 		else if(asteroid2.intersects(megaMan)){
 			status.setLivesLeft(status.getLivesLeft() - 1);
 			removeAsteroid(asteroid2);
+			this.getSoundManager().playAsteroidExplosionSound();
 		}
 	}
 	
@@ -259,12 +297,14 @@ public class Level3State extends Level1State {
 				levelAsteroidsDestroyed++;
 				status.setAsteroidsDestroyed(status.getAsteroidsDestroyed() + 100);
 				removeAsteroid(asteroid);
+				this.getSoundManager().playAsteroidExplosionSound();
 				damage=0;
 			}
 			else if(asteroid2.intersects(bigBullet)){
 				levelAsteroidsDestroyed++;
 				status.setAsteroidsDestroyed(status.getAsteroidsDestroyed() + 100);
 				removeAsteroid(asteroid2);
+				this.getSoundManager().playAsteroidExplosionSound();
 				damage=0;
 			}
 		}
@@ -279,6 +319,7 @@ public class Level3State extends Level1State {
 				levelAsteroidsDestroyed++;
 				status.setAsteroidsDestroyed(status.getAsteroidsDestroyed() + 100);
 				removeAsteroid(asteroid);
+				this.getSoundManager().playAsteroidExplosionSound();
 				System.out.println("Asteroids Destroyed: " + levelAsteroidsDestroyed);
 				damage=0;
 				// remove bullet
@@ -289,6 +330,7 @@ public class Level3State extends Level1State {
 				levelAsteroidsDestroyed++;
 				status.setAsteroidsDestroyed(status.getAsteroidsDestroyed() + 100);
 				removeAsteroid(asteroid2);
+				this.getSoundManager().playAsteroidExplosionSound();
 				System.out.println("Asteroids Destroyed: " + levelAsteroidsDestroyed);
 				damage=0;
 				// remove bullet

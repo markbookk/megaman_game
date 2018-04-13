@@ -17,7 +17,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import javafx.scene.layout.Background;
 import rbadia.voidspace.graphics.GraphicsManager;
 import rbadia.voidspace.model.Asteroid;
 import rbadia.voidspace.model.BigBullet;
@@ -155,7 +154,8 @@ public class Level1State extends LevelState {
 		LevelLogic.delay(2000);
 		//Changes music from "menu music" to "ingame music"
 		MegaManMain.audioClip.close();
-		MegaManMain.audioFile = new File("audio/mainGame.wav");
+//		MegaManMain.audioFile = new File("audio/mainGame.wav");
+		MegaManMain.audioFile = new File("audio/song1.wav");
 //		System.out.println(SoundManager.SOUND_ON); //Debug mute on Level 1
 		try {
 			MegaManMain.audioStream = AudioSystem.getAudioInputStream(MegaManMain.audioFile);

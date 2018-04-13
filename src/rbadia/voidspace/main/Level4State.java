@@ -1,6 +1,13 @@
 package rbadia.voidspace.main;
 
 import java.awt.Graphics2D;
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import javafx.scene.layout.Background;
 import rbadia.voidspace.graphics.GraphicsManager;
@@ -17,9 +24,35 @@ public class Level4State extends Level3State{
 	}
 	protected boolean moveRight = true;
 	
+	@Override
+	public void doGettingReady() {
+		setCurrentState(GETTING_READY);
+		getGameLogic().drawGetReady();
+		repaint();
+		LevelLogic.delay(2000);
+		//Changes music from "menu music" to "ingame music"
+		MegaManMain.audioClip.close();
+//		MegaManMain.audioFile = new File("audio/mainGame.wav");
+		MegaManMain.audioFile = new File("audio/song4.wav");
+//		System.out.println(SoundManager.SOUND_ON); //Debug mute on Level 1
+		try {
+			MegaManMain.audioStream = AudioSystem.getAudioInputStream(MegaManMain.audioFile);
+			MegaManMain.audioClip.open(MegaManMain.audioStream);
+			if (SoundManager.SOUND_ON) {
+				MegaManMain.audioClip.start();
+				MegaManMain.audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+			}
+		} catch (UnsupportedAudioFileException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} catch (LineUnavailableException e1) {
+			e1.printStackTrace();
+		}
+	};
 	
 	@Override
-	public void doStart() {	
+	public void doStart() {
 		super.doStart();
 		newPlatforms(getNumPlatforms());
 	}
