@@ -41,6 +41,8 @@ public class GraphicsManager {
 	private BufferedImage powerUpLivesImg;
 	private BufferedImage powerUpLivesExplosionImg;
 	private BufferedImage asteroidBigImg;
+	private BufferedImage megaBossImg;
+	private BufferedImage megaBossBulletsImg;
 
 	/**
 	 * Creates a new graphics manager and loads the game images.
@@ -63,6 +65,8 @@ public class GraphicsManager {
 			this.bigBulletImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/bigBullet.png"));
 			this.powerUpLivesImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/powerup.png"));
 			this.powerUpLivesExplosionImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/powerupExplosion.png"));
+			this.megaBossImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaBoss.png"));
+			this.megaBossBulletsImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaBossBullets.png"));
 			
 
 		} catch (Exception e) {
@@ -178,6 +182,15 @@ public class GraphicsManager {
 	public void drawPowerUpLivesExplosion(Rectangle powerUpExplosion, Graphics2D g2d, ImageObserver observer) {
 		g2d.drawImage(powerUpLivesExplosionImg, powerUpExplosion.x, powerUpExplosion.y, observer);
 	}
+	
+	//Boss Stuff
+	public void drawMegaBoss (MegaMan megaBoss, Graphics2D g2d, ImageObserver observer){
+		g2d.drawImage(megaBossImg, megaBoss.x, megaBoss.y, observer);	
+	}
+	public void drawMegaBossBullet(Bullet bullet, Graphics2D g2d, ImageObserver observer) {
+		g2d.drawImage(megaBossBulletsImg, bullet.x, bullet.y, observer);
+	}
+	
 
 
 

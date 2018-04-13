@@ -32,34 +32,36 @@ public class Level4State extends Level3State{
 	@Override
 	public Platform[] newPlatforms(int n){
 		platforms = new Platform[n];
-		System.out.println("test");
 		for(int i=0; i<n; i++){
-			this.platforms[i] = new Platform(0 , SCREEN_HEIGHT/2 + 140 - i*40);
+			this.platforms[i] = new Platform(0,0);
+			if (i < 5) platforms[i].setLocation(20+ i*50, SCREEN_HEIGHT/2 + 140 - i*40);
+			if (i == 5) platforms[i].setLocation(100+ i*50, SCREEN_HEIGHT/2 + 140 - i*30);
+			if (i > 5) platforms[i].setLocation(100+ i*50, SCREEN_HEIGHT/2 + 140 - i*30)  ;
 		}
 		return platforms;
-
 	}
 	
 	@Override
 	protected void drawPlatforms() {
 		//draw platforms
-		numPlatforms = 3;
+//		numPlatforms = 8;
 		Graphics2D g2d = getGraphics2D();
 		for(int i=0; i<getNumPlatforms(); i++){
 			getGraphicsManager().drawPlatform(platforms[i], g2d, this, i);
 		}
-			if (platforms[2].getX() == 0) {
+		// If platform #5 (5-1=4), then move it
+			if (platforms[4].getX() == 0) {
 				moveRight = true;
 			}
-			else if (platforms[2].getX() == SCREEN_HEIGHT) {
+			else if (platforms[4].getX() == SCREEN_HEIGHT) {
 				moveRight = false; //move left
 			}
 			
 			if (moveRight) { //move right
-				platforms[2].translate(1, 0);
+				platforms[4].translate(1, 0);
 			}
 			else { //move left
-				platforms[2].translate(-1, 0);
+				platforms[4].translate(-1, 0);
 			}
 				
 			
