@@ -67,10 +67,16 @@ public class Level4State extends Level3State{
 			
 	}
 	//Added Background Image
-			protected Background greenbakcgroundImg;
-			protected void clearScreen() {
-				// clear screen
-				Graphics2D g2d = getGraphics2D();
-				((GraphicsManager)getGraphicsManager()).drawgreenBackground(greenbakcgroundImg, g2d, this);
-			}
+	protected Background greenbakcgroundImg;
+	protected void clearScreen() {
+		// clear screen
+		Graphics2D g2d = getGraphics2D();
+		((GraphicsManager)getGraphicsManager()).drawgreenBackground(greenbakcgroundImg, g2d, this);
+	}
+	
+	@Override
+	public boolean isLevelWon() {
+		return levelAsteroidsDestroyed >= 9;
+	}
+		
 }

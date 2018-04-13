@@ -72,4 +72,9 @@ public class Level2State extends Level1State {
 		Graphics2D g2d = getGraphics2D();
 		((GraphicsManager)getGraphicsManager()).drawplanetsBackground(planetsbakcgroundImg, g2d, this);
 	}
+	
+	@Override
+	public boolean isLevelWon() {
+		return levelAsteroidsDestroyed >= 5;
+	}
 }

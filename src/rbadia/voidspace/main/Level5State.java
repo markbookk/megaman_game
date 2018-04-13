@@ -302,10 +302,10 @@ public class Level5State extends Level3State{
 		}
 	}
 	//Added Background Image
-			protected Background spacebackgroundImg;
-			protected void clearScreen() {
-				// clear screen
-				Graphics2D g2d = getGraphics2D();
-				((GraphicsManager)getGraphicsManager()).drawspaceBackground(spacebackgroundImg, g2d, this);
-			}
+	protected Background spacebackgroundImg;
+	protected void clearScreen() {
+		// clear screen
+		Graphics2D g2d = getGraphics2D();
+		((GraphicsManager)getGraphicsManager()).drawspaceBackground(spacebackgroundImg, g2d, this);
+	}
 }

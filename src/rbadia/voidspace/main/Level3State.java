@@ -300,4 +300,9 @@ public class Level3State extends Level1State {
 		Graphics2D g2d = getGraphics2D();
 		((GraphicsManager)getGraphicsManager()).drawstarryBackground(starrybakcgroundImg, g2d, this);
 	}
+	
+	@Override
+	public boolean isLevelWon() {
+		return levelAsteroidsDestroyed >= 7;
+	}
 }
