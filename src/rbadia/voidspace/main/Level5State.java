@@ -43,8 +43,10 @@ public class Level5State extends Level3State{
 		drawMegaBossBullets();
 		checkMegaManBossCollisions();
 		checkBulletMegaManCollisions();
-		checkBullletAsteroidCollisions();
-		checkBossBullletMegaManCollisions();
+		checkBulletAsteroidCollisions();
+		checkBossBulletMegaManCollisions();
+		checkBigBulletAsteroidCollisions();
+		checkBigBulletMegaManCollisions();
 	}
 	
 	@Override
@@ -205,11 +207,28 @@ public class Level5State extends Level3State{
 			}
 		}
 	}
+	protected void checkBigBulletMegaManCollisions() {
+		GameStatus status = getGameStatus();
+		for(int i=0; i<bigBullets.size(); i++){
+			BigBullet bullet = bigBullets.get(i);
+			if(megaBoss.intersects(bullet)){
+				// increase asteroids destroyed count
+				status.setAsteroidsDestroyed(status.getAsteroidsDestroyed() + 100);
+				levelAsteroidsDestroyed++;
+				levelAsteroidsDestroyed++;
+				System.out.println("Times you hit boss: " + levelAsteroidsDestroyed);
+				damage=0;
+				// remove bullet
+				bigBullets.remove(i);
+				break;
+			}
+		}
+	}
 	
 	
 	// Not win by asteroid count
 	@Override
-	protected void checkBullletAsteroidCollisions() {
+	protected void checkBulletAsteroidCollisions() {
 		GameStatus status = getGameStatus();
 		for(int i=0; i<bullets.size(); i++){
 			Bullet bullet = bullets.get(i);
@@ -224,8 +243,22 @@ public class Level5State extends Level3State{
 			}
 		}
 	}
+	@Override
+	protected void checkBigBulletAsteroidCollisions() {
+		GameStatus status = getGameStatus();
+		for(int i=0; i<bigBullets.size(); i++){
+			BigBullet bigBullet = bigBullets.get(i);
+			if(asteroid.intersects(bigBullet)){
+				// increase asteroids destroyed count
+				status.setAsteroidsDestroyed(status.getAsteroidsDestroyed() + 100);
+				removeAsteroid(asteroid);
+				damage=0;
+			}
+		}
+	}
 	
-	protected void checkBossBullletMegaManCollisions() {
+	
+	protected void checkBossBulletMegaManCollisions() {
 		GameStatus status = getGameStatus();
 		for(int i=0; i<bossBullets.size(); i++){
 			Bullet bullet = bossBullets.get(i);

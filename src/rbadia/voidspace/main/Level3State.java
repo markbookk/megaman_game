@@ -251,13 +251,13 @@ public class Level3State extends Level1State {
 		for(int i=0; i<bigBullets.size(); i++){
 			BigBullet bigBullet = bigBullets.get(i);
 			if(asteroid.intersects(bigBullet)){
-				// increase asteroids destroyed count
+				levelAsteroidsDestroyed++;
 				status.setAsteroidsDestroyed(status.getAsteroidsDestroyed() + 100);
 				removeAsteroid(asteroid);
 				damage=0;
 			}
 			else if(asteroid2.intersects(bigBullet)){
-				// increase asteroids destroyed count
+				levelAsteroidsDestroyed++;
 				status.setAsteroidsDestroyed(status.getAsteroidsDestroyed() + 100);
 				removeAsteroid(asteroid2);
 				damage=0;
@@ -266,15 +266,14 @@ public class Level3State extends Level1State {
 	}
 
 	@Override
-	protected void checkBullletAsteroidCollisions() {
+	protected void checkBulletAsteroidCollisions() {
 		GameStatus status = getGameStatus();
 		for(int i=0; i<bullets.size(); i++){
 			Bullet bullet = bullets.get(i);
 			if(asteroid.intersects(bullet)){
-				// increase asteroids destroyed count
+				levelAsteroidsDestroyed++;
 				status.setAsteroidsDestroyed(status.getAsteroidsDestroyed() + 100);
 				removeAsteroid(asteroid);
-				levelAsteroidsDestroyed++;
 				System.out.println("Asteroids Destroyed: " + levelAsteroidsDestroyed);
 				damage=0;
 				// remove bullet
@@ -282,10 +281,9 @@ public class Level3State extends Level1State {
 				break;
 			}
 			else if(asteroid2.intersects(bullet)){
-				// increase asteroids destroyed count
+				levelAsteroidsDestroyed++;
 				status.setAsteroidsDestroyed(status.getAsteroidsDestroyed() + 100);
 				removeAsteroid(asteroid2);
-				levelAsteroidsDestroyed++;
 				System.out.println("Asteroids Destroyed: " + levelAsteroidsDestroyed);
 				damage=0;
 				// remove bullet
