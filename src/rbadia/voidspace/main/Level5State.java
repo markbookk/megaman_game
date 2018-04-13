@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import rbadia.voidspace.graphics.GraphicsManager;
+import rbadia.voidspace.model.BigBullet;
 import rbadia.voidspace.model.Bullet;
 import rbadia.voidspace.model.LeftBullet;
 import rbadia.voidspace.model.MegaMan;
@@ -38,9 +39,12 @@ public class Level5State extends Level3State{
 		super.updateScreen();
 		drawPlatforms();
 		drawMegaBoss();
-//		fireBossBullet();
-		randomBossShooting();
+		randomBossEvents();
 		drawMegaBossBullets();
+		checkMegaManBossCollisions();
+		checkBulletMegaManCollisions();
+		checkBullletAsteroidCollisions();
+		checkBossBullletMegaManCollisions();
 	}
 	
 	@Override
@@ -153,7 +157,7 @@ public class Level5State extends Level3State{
 		}
 	}
 	
-	public void randomBossShooting() {
+	public void randomBossEvents() {
 		Random r = new Random();
 		int randomNum = r.nextInt(30);
 		if (randomNum == 1) {
@@ -176,5 +180,73 @@ public class Level5State extends Level3State{
 		}
 	}
 	
+	protected void checkMegaManBossCollisions() {
+		GameStatus status = getGameStatus();
+		if(megaBoss.intersects(megaMan)){
+			status.setLivesLeft(status.getLivesLeft() - 1);
+		}
+	}
+	
+	
 
+	protected void checkBulletMegaManCollisions() {
+		GameStatus status = getGameStatus();
+		for(int i=0; i<bullets.size(); i++){
+			Bullet bullet = bullets.get(i);
+			if(megaBoss.intersects(bullet)){
+				// increase asteroids destroyed count
+				status.setAsteroidsDestroyed(status.getAsteroidsDestroyed() + 100);
+				levelAsteroidsDestroyed++;
+				System.out.println("Times you hit boss: " + levelAsteroidsDestroyed);
+				damage=0;
+				// remove bullet
+				bullets.remove(i);
+				break;
+			}
+		}
+	}
+	
+	
+	// Not win by asteroid count
+	@Override
+	protected void checkBullletAsteroidCollisions() {
+		GameStatus status = getGameStatus();
+		for(int i=0; i<bullets.size(); i++){
+			Bullet bullet = bullets.get(i);
+			if(asteroid.intersects(bullet)){
+				// increase asteroids destroyed count
+				status.setAsteroidsDestroyed(status.getAsteroidsDestroyed() + 100);
+				removeAsteroid(asteroid);
+				damage=0;
+				// remove bullet
+				bullets.remove(i);
+				break;
+			}
+		}
+	}
+	
+	protected void checkBossBullletMegaManCollisions() {
+		GameStatus status = getGameStatus();
+		for(int i=0; i<bossBullets.size(); i++){
+			Bullet bullet = bossBullets.get(i);
+			if(megaMan.intersects(bullet)){
+				status.setLivesLeft(status.getLivesLeft() - 1);
+				// remove bullet
+				bossBullets.remove(i);
+				break;
+			}
+		}
+	}
+	
+	//Don't do anything
+	//Don't draw another asteroid
+	@Override
+	protected void drawAsteroid2() {
+	}
+	
+	@Override
+	public boolean isLevelWon() {
+		return levelAsteroidsDestroyed >= 10;
+	}
+	
 }
