@@ -2,6 +2,7 @@ package rbadia.voidspace.main;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
+import javafx.scene.layout.Background;
 import rbadia.voidspace.graphics.GraphicsManager;
 import rbadia.voidspace.model.Asteroid;
 import rbadia.voidspace.model.BigBullet;
@@ -291,5 +292,12 @@ public class Level3State extends Level1State {
 				break;
 			}
 		}
+	}
+	//Added Background Image
+	protected Background starrybakcgroundImg;
+	protected void clearScreen() {
+		// clear screen
+		Graphics2D g2d = getGraphics2D();
+		((GraphicsManager)getGraphicsManager()).drawstarryBackground(starrybakcgroundImg, g2d, this);
 	}
 }

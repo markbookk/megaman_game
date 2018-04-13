@@ -17,6 +17,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import javafx.scene.layout.Background;
 import rbadia.voidspace.graphics.GraphicsManager;
 import rbadia.voidspace.model.Asteroid;
 import rbadia.voidspace.model.BigBullet;
@@ -696,4 +697,5 @@ public class Level1State extends LevelState {
 	public void slowDownMegaMan() {
 		megaMan.setSpeed(megaMan.getDefaultSpeed());
 	}
+	
 }

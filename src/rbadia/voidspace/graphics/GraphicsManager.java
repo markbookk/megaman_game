@@ -8,6 +8,7 @@ import java.awt.image.ImageObserver;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
+import javafx.scene.layout.Background;
 import rbadia.voidspace.main.Level3State;
 import rbadia.voidspace.model.Asteroid;
 //import rbadia.voidspace.model.BigAsteroid;
@@ -43,6 +44,11 @@ public class GraphicsManager {
 	private BufferedImage asteroidBigImg;
 	private BufferedImage megaBossImg;
 	private BufferedImage megaBossBulletsImg;
+	private BufferedImage starrybakcgroundImg;
+	private BufferedImage planetsbakcgroundImg;
+	private BufferedImage greenbakcgroundImg;
+	private BufferedImage spacebackgroundImg;
+
 
 	/**
 	 * Creates a new graphics manager and loads the game images.
@@ -67,7 +73,10 @@ public class GraphicsManager {
 			this.powerUpLivesExplosionImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/powerupExplosion.png"));
 			this.megaBossImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaBoss.png"));
 			this.megaBossBulletsImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/megaBossBullets.png"));
-			
+			this.starrybakcgroundImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/starryback1.png"));
+			this.planetsbakcgroundImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/Planetsbackground1.png"));
+			this.greenbakcgroundImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/greenbackground3.png"));
+			this.spacebackgroundImg = ImageIO.read(getClass().getResource("/rbadia/voidspace/graphics/spacebackground1.png"));
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "The graphic files are either corrupt or missing.",
@@ -118,6 +127,19 @@ public class GraphicsManager {
 	public void drawPlatform2 (Platform platform, Graphics2D g2d, ImageObserver observer, int i){
 		g2d.drawImage(platformImg, platform.x , platform.y, observer);	
 }
+	
+	public void drawgreenBackground(Background background, Graphics2D g2d, ImageObserver observer) { //NEW
+		g2d.drawImage(this.greenbakcgroundImg, 0, 0, observer);
+	}
+	public void drawstarryBackground(Background background, Graphics2D g2d, ImageObserver observer) { //NEW
+		g2d.drawImage(this.starrybakcgroundImg, 0, 0, observer);
+	}
+	public void drawplanetsBackground(Background background, Graphics2D g2d, ImageObserver observer) { //NEW
+		g2d.drawImage(this.planetsbakcgroundImg, 0, 0, observer);
+	}
+	public void drawspaceBackground(Background background, Graphics2D g2d, ImageObserver observer) { //NEW
+		g2d.drawImage(this.spacebackgroundImg, 0, 0, observer);
+	}
 
 	/**
 	 * Draws a bullet image to the specified graphics canvas.

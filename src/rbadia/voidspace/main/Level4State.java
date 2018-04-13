@@ -2,6 +2,7 @@ package rbadia.voidspace.main;
 
 import java.awt.Graphics2D;
 
+import javafx.scene.layout.Background;
 import rbadia.voidspace.graphics.GraphicsManager;
 import rbadia.voidspace.model.Platform;
 import rbadia.voidspace.sounds.SoundManager;
@@ -62,9 +63,14 @@ public class Level4State extends Level3State{
 			}
 			else { //move left
 				platforms[4].translate(-1, 0);
-			}
-				
+			}		
 			
 	}
-
+	//Added Background Image
+			protected Background greenbakcgroundImg;
+			protected void clearScreen() {
+				// clear screen
+				Graphics2D g2d = getGraphics2D();
+				((GraphicsManager)getGraphicsManager()).drawgreenBackground(greenbakcgroundImg, g2d, this);
+			}
 }

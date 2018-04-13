@@ -1,6 +1,7 @@
 package rbadia.voidspace.main;
 import java.awt.Graphics2D;
 
+import javafx.scene.layout.Background;
 import rbadia.voidspace.graphics.GraphicsManager;
 import rbadia.voidspace.model.Platform;
 import rbadia.voidspace.sounds.SoundManager;
@@ -63,5 +64,12 @@ public class Level2State extends Level1State {
 			}
 		}
 		return platforms;
+	}
+	//Added Background Image
+	protected Background planetsbakcgroundImg;
+	protected void clearScreen() {
+		// clear screen
+		Graphics2D g2d = getGraphics2D();
+		((GraphicsManager)getGraphicsManager()).drawplanetsBackground(planetsbakcgroundImg, g2d, this);
 	}
 }
