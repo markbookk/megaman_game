@@ -545,7 +545,7 @@ public class Level1State extends LevelState {
 //		Bullet bullet = new Bullet(megaMan.x + megaMan.width - Bullet.WIDTH/2,
 //				megaMan.y + megaMan.width/2 - Bullet.HEIGHT +2);
 		if (isLookingLeft) {
-			Bullet bullet = new LeftBullet(megaMan.x + megaMan.width - Bullet.WIDTH/2,
+			Bullet bullet = new LeftBullet(megaMan.x + megaMan.width - Bullet.WIDTH/2 - 40,//Added so megaman shoots on weapon
 					megaMan.y + megaMan.width/2 - Bullet.HEIGHT +2);
 			bullets.add(bullet);
 		}
