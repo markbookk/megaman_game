@@ -55,6 +55,7 @@ touching the ground or a platform).
 
 
 - [x] You can shoot at the powerup (will give you 5+ points).
+- [x] Boss health bar on top of boss.
 
 - [ ] Adding more levels.
 - [ ] Make the boss move more realistic.

@@ -32,7 +32,7 @@ public class Level3State extends Level1State {
 //	protected boolean mooshroomDestroyed = false;
 	protected double lastmooshroomTime;
 	protected boolean canDraw = false;
-	protected int mooshroomDelay = 10000;
+	protected int mooshroomDelay = 15000;
 	protected int side = 1;
 	protected int side2 = 1;
 	protected int randomSpeedx1 = rand.nextInt(3) + 1;
